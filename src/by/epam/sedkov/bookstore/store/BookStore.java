@@ -38,11 +38,12 @@ public class BookStore {
     }
 
     public boolean add(BookItem bookItem) throws BookException {
-        if (bookItem == null) {
-            // TODO: 05.07.2020       //throw new BookException("Book is null");
-            return false;
-        }
         return books.add(bookItem);
+    }
+
+    public boolean remove(BookItem bookItem) {
+        return books.remove(bookItem);
+        // TODO: 05.07.2020
     }
 
 }
