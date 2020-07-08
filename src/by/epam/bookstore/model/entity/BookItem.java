@@ -1,13 +1,14 @@
-package by.epam.sedkov.bookstore.entity;
+package by.epam.bookstore.model.entity;
 
-import by.epam.sedkov.bookstore.exception.BookException;
+import by.epam.bookstore.model.exception.BookException;
+import by.epam.bookstore.model.util.GeneratorId;
 
 import java.time.LocalDate;
 import java.util.*;
 
 public class BookItem {
 
-    private UUID idBook;
+    private int idBook;
     private String title;
     private Set<String> authors;
     private int yearPublishing;
@@ -18,7 +19,7 @@ public class BookItem {
                 || pages < 0 || authors == null) {
             throw new BookException("Book arguments are not correct.");
         }
-        this.idBook = UUID.randomUUID();
+        this.idBook = GeneratorId.generateId();
         this.title = title;
         this.yearPublishing = yearPublishing;
         this.pages = pages;
@@ -26,11 +27,24 @@ public class BookItem {
         this.authors.addAll(Arrays.asList(authors));
     }
 
-    public UUID getIdBook() {
+    public BookItem(int idBook, String title, int yearPublishing, int pages, String... authors) throws BookException {
+        if (idBook < 0 || title == null || yearPublishing < 0 || yearPublishing > LocalDate.now().getYear()
+                || pages < 0 || authors == null) {
+            throw new BookException("Book arguments are not correct.");
+        }
+        this.idBook = idBook;
+        this.title = title;
+        this.yearPublishing = yearPublishing;
+        this.pages = pages;
+        this.authors = new TreeSet<>();
+        this.authors.addAll(Arrays.asList(authors));
+    }
+
+    public int getIdBook() {
         return idBook;
     }
 
-    public String getTitle() {
+    public String getTitle () {
         return title;
     }
 
@@ -77,16 +91,16 @@ public class BookItem {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         BookItem bookItem = (BookItem) o;
+        if (idBook != bookItem.idBook) return false;
         if (yearPublishing != bookItem.yearPublishing) return false;
         if (pages != bookItem.pages) return false;
-        if (idBook != null ? !idBook.equals(bookItem.idBook) : bookItem.idBook != null) return false;
         if (title != null ? !title.equals(bookItem.title) : bookItem.title != null) return false;
         return authors != null ? authors.equals(bookItem.authors) : bookItem.authors == null;
     }
 
     @Override
     public int hashCode() {
-        int result = idBook != null ? idBook.hashCode() : 0;
+        int result = idBook;
         result = 31 * result + (title != null ? title.hashCode() : 0);
         result = 31 * result + (authors != null ? authors.hashCode() : 0);
         result = 31 * result + yearPublishing;

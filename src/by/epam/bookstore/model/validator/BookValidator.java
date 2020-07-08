@@ -1,7 +1,7 @@
-package by.epam.sedkov.bookstore.validator;
+package by.epam.bookstore.model.validator;
 
-import by.epam.sedkov.bookstore.entity.BookItem;
-import by.epam.sedkov.bookstore.store.BookStore;
+import by.epam.bookstore.model.entity.BookItem;
+import by.epam.bookstore.model.store.BookStore;
 
 import java.util.List;
 

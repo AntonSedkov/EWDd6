@@ -1,7 +1,7 @@
-package by.epam.sedkov.bookstore.creator;
+package by.epam.bookstore.model.creator;
 
-import by.epam.sedkov.bookstore.entity.BookItem;
-import by.epam.sedkov.bookstore.exception.BookException;
+import by.epam.bookstore.model.entity.BookItem;
+import by.epam.bookstore.model.exception.BookException;
 
 public class BookCreator {
 
