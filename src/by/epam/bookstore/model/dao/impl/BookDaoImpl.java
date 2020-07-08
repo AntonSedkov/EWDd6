@@ -5,11 +5,11 @@ import by.epam.bookstore.model.entity.BookItem;
 import by.epam.bookstore.model.exception.BookException;
 import by.epam.bookstore.model.store.BookStore;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.lang.reflect.Array;
+import java.util.*;
 import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toCollection;
 
 public class BookDaoImpl implements BookDao {
 
@@ -96,9 +96,9 @@ public class BookDaoImpl implements BookDao {
         return sorted;
     }
 
-    private List<BookItem> receiveBooksToSort() {
+    private List<BookItem> receiveBooksToSort(){
         List<BookItem> fromBookStore = BookStore.getInstance().getBooks();
-        List<BookItem> booksToSort = new ArrayList<>(fromBookStore);
-        return booksToSort;
+        List<BookItem> newList = new ArrayList<>(fromBookStore);
+        return newList;
     }
 }

@@ -14,6 +14,7 @@ public class BookItem {
     private int yearPublishing;
     private int pages;
 
+
     public BookItem(String title, int yearPublishing, int pages, String... authors) throws BookException {
         if (title == null || yearPublishing < 0 || yearPublishing > LocalDate.now().getYear()
                 || pages < 0 || authors == null) {
@@ -44,7 +45,7 @@ public class BookItem {
         return idBook;
     }
 
-    public String getTitle () {
+    public String getTitle() {
         return title;
     }
 

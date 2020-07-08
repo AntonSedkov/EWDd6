@@ -39,7 +39,7 @@ public class Main {
         System.out.println(booksFound3);
         List<BookItem> booksFound4 = service.findByPages(863);
         System.out.println(booksFound4);*/
-
+/*
        List<BookItem> books2 = service.sortBooksByTitle();
         System.out.println("books2 " + Arrays.toString(books.toArray()));
 
@@ -48,7 +48,7 @@ public class Main {
         List<BookItem> books3 = service.sortBooksByYearPublishing();
         System.out.println("books3 " + Arrays.toString(books.toArray()));
 
-        System.out.println("books " + Arrays.toString(books.toArray()));
+        System.out.println("books " + Arrays.toString(books.toArray()));*/
 /*
         List<BookItem> books = BookStore.getInstance().getBooks();
         System.out.println(Arrays.toString(books.toArray()));
