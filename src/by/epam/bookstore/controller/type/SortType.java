@@ -1,4 +1,4 @@
-package by.epam.bookstore.controller.command.type;
+package by.epam.bookstore.controller.type;
 
 import by.epam.bookstore.model.entity.BookItem;
 import by.epam.bookstore.model.service.BookService;

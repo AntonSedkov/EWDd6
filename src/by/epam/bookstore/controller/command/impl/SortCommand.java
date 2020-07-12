@@ -1,7 +1,7 @@
 package by.epam.bookstore.controller.command.impl;
 
 import by.epam.bookstore.controller.command.Command;
-import by.epam.bookstore.controller.command.type.SortType;
+import by.epam.bookstore.controller.type.SortType;
 import by.epam.bookstore.model.entity.BookItem;
 import by.epam.bookstore.model.exception.BookServiceException;
 import by.epam.bookstore.model.validator.BookCommandValidator;

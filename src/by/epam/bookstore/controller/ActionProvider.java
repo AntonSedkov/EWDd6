@@ -2,7 +2,7 @@ package by.epam.bookstore.controller;
 
 import by.epam.bookstore.controller.command.Command;
 import by.epam.bookstore.controller.command.impl.EmptyCommand;
-import by.epam.bookstore.controller.command.type.CommandType;
+import by.epam.bookstore.controller.type.CommandType;
 
 public class ActionProvider {
 

@@ -1,4 +1,4 @@
-package by.epam.bookstore.controller.command.type;
+package by.epam.bookstore.controller.type;
 
 import by.epam.bookstore.controller.command.Command;
 import by.epam.bookstore.controller.command.impl.AddBookCommand;
