@@ -6,4 +6,9 @@ public class GeneratorId {
     public static int generateId() {
         return currentNumber++;
     }
+
+    public static int getCurrentNumber() {
+        return currentNumber;
+    }
+
 }

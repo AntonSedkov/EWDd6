@@ -4,12 +4,10 @@ import by.epam.bookstore.model.dao.BookDao;
 import by.epam.bookstore.model.entity.BookItem;
 import by.epam.bookstore.model.exception.BookException;
 import by.epam.bookstore.model.store.BookStore;
+import by.epam.bookstore.model.validator.BookValidator;
 
-import java.lang.reflect.Array;
 import java.util.*;
 import java.util.stream.Collectors;
-
-import static java.util.stream.Collectors.toCollection;
 
 public class BookDaoImpl implements BookDao {
 
@@ -17,7 +15,7 @@ public class BookDaoImpl implements BookDao {
         if (book == null) {
             throw new BookException("Book is null.");
         }
-        if (!BookStore.getInstance().add(book)) {
+        if (BookValidator.isDuplicateBook(book) || !BookStore.getInstance().add(book)) {
             throw new BookException("Book is not added.");
         }
     }
@@ -67,13 +65,13 @@ public class BookDaoImpl implements BookDao {
     }
 
     public List<BookItem> sortBooksByID() {
-        List<BookItem> books = BookStore.getInstance().getBooks();
+        List<BookItem> books = receiveBooksToSort();
         books.sort(Comparator.comparing(bookItem -> bookItem.getIdBook()));
         return books;
     }
 
     public List<BookItem> sortBooksByTitle() {
-        List<BookItem> books = new ArrayList<>(BookStore.getInstance().getBooks());
+        List<BookItem> books = receiveBooksToSort();
         books.sort(Comparator.comparing(bookItem -> bookItem.getTitle()));
         return books;
     }
@@ -86,7 +84,17 @@ public class BookDaoImpl implements BookDao {
 
     public List<BookItem> sortBooksByAuthors() {
         List<BookItem> sorted = receiveBooksToSort();
-        sorted.sort(Comparator.comparing(bookItem -> bookItem.getAuthors().contains("0")));
+        sorted.sort(Comparator.comparing(BookItem::getAuthors, (s1, s2) -> {
+            TreeSet<String> author1 = new TreeSet<>(s1);
+            TreeSet<String> author2 = new TreeSet<>(s2);
+            String authorFirstBook = author1.pollFirst();
+            String authorSecondBook = author2.pollFirst();
+            while (authorFirstBook.compareTo(authorSecondBook) == 0 && author1.iterator().hasNext() && author2.iterator().hasNext()) {
+                authorFirstBook = author1.pollFirst();
+                authorSecondBook = author2.pollFirst();
+            }// TODO: 11.07.2020 Do it correctly?
+            return authorFirstBook.compareTo(authorSecondBook);
+        }));
         return sorted;
     }
 
@@ -96,7 +104,7 @@ public class BookDaoImpl implements BookDao {
         return sorted;
     }
 
-    private List<BookItem> receiveBooksToSort(){
+    private List<BookItem> receiveBooksToSort() {
         List<BookItem> fromBookStore = BookStore.getInstance().getBooks();
         List<BookItem> newList = new ArrayList<>(fromBookStore);
         return newList;

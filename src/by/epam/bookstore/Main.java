@@ -4,10 +4,12 @@ import by.epam.bookstore.model.creator.BookCreator;
 import by.epam.bookstore.model.dao.impl.BookDaoImpl;
 import by.epam.bookstore.model.entity.BookItem;
 import by.epam.bookstore.model.exception.BookException;
+import by.epam.bookstore.model.parser.AuthorParser;
 import by.epam.bookstore.model.store.BookStore;
 
-import java.util.Arrays;
-import java.util.List;
+import java.sql.SQLOutput;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) throws BookException {
@@ -17,11 +19,66 @@ public class Main {
 
         BookDaoImpl service = new BookDaoImpl();
         BookCreator creator = new BookCreator();
-        service.addBook(creator.createBook("In Search of Lost Time", 1913, 468, "Marcel Proust"));
+
+/*        service.addBook(creator.createBook("In Search of Lost Time", 1913, 468, "Marcel Proust"));
+        System.out.println("good");
         service.addBook(creator.createBook("Ulysses", 1922, 736, "James Joyce"));
+        System.out.println("good");
         service.addBook(creator.createBook("Don Quixote", 1615, 863, "Miguel de Cervantes"));
+        System.out.println("good");
         service.addBook(creator.createBook("In Search of Lost Time", 1913, 468, "Marcel Proust"));
-        service.addBook(creator.createBook("Ulysses", 1913, 863, "James Joyce", "Peter Straub"));
+
+        System.out.println(BookStore.getInstance().getBooks());*/
+
+/*
+        service.addBook(creator.createBook("da", 17, 99, "Ma", "Ses"));
+        service.addBook(creator.createBook("dm", 19, 30, "AN"));
+        service.addBook(creator.createBook("mkd", 10, 55, "Miges", "ABC"));
+        service.addBook(creator.createBook("asd", 33, 3000, "JJa"));
+        service.addBook(creator.createBook("bcd", 12, 222, "Kils", "Dec", "ABC"));
+        //service.addBook(creator.createBook(null, 10, 55, null));
+
+        List<BookItem> test = service.sortBooksByTitle();
+
+        System.out.println(test);
+        System.out.println(Arrays.toString(books.toArray()));
+        System.out.println(BookStore.getInstance().getBooks());
+
+        books = test;
+        System.out.println(service.sortBooksByID());
+        System.out.println(Arrays.toString(books.toArray()));
+        System.out.println(BookStore.getInstance().getBooks());
+
+        System.out.println(service.sortBooksByYearPublishing());
+        System.out.println(Arrays.toString(books.toArray()));
+        System.out.println(BookStore.getInstance().getBooks());
+
+        System.out.println(service.sortBooksByPages());
+        System.out.println(Arrays.toString(books.toArray()));
+        System.out.println(BookStore.getInstance().getBooks());
+
+        System.out.println("THIS IS");
+        System.out.println(service.sortBooksByAuthors());
+        System.out.println(Arrays.toString(books.toArray()));
+        System.out.println(BookStore.getInstance().getBooks());
+*/
+
+
+
+/*
+        ArrayList<Integer> soo = new ArrayList<>();
+        soo.add(50);
+        soo.add(12);
+        soo.add(222);
+        soo.add(454645);
+        soo.add(0);
+        soo.add(1);
+        soo.add(77);
+        System.out.println(soo);
+        ArrayList<Integer> bbb = soo.stream().sorted(Integer::compareTo).collect(Collectors.toCollection(ArrayList::new));
+        System.out.println(bbb);
+*/
+
 
 /*        System.out.println(Arrays.toString(books.toArray()));
         service.removeBook(new BookItem(0, "In Search of Lost Time", 1913, 468, "Marcel Proust"));
@@ -79,6 +136,11 @@ public class Main {
         books.add(creator.createBook("The Talisman: A Novel", 2012, 944, "Stephen King", "Peter Straub"));
         books.add(creator.createBook("Heads You Lose", 2012, 300, "Lisa Lutz", "David Hayward"));*/
 
+
+        String[] strings = AuthorParser.parseAuthors("Anton Sedkov, Harry Kane, Goeds Fsafes");
+        for (int i = 0; i<strings.length;i++){
+            System.out.println(strings[i]);
+        }
 
     }
 

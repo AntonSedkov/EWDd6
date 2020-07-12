@@ -79,12 +79,11 @@ public class BookItem {
     }
 
     public boolean equalsBooks(BookItem bookItem) {
-        if (this == bookItem) return true;
-        if (bookItem == null || getClass() != bookItem.getClass()) return false;
+        if (bookItem == null) return false;
         if (yearPublishing != bookItem.getYearPublishing()) return false;
         if (pages != bookItem.getPages()) return false;
         if (title != null ? !title.equals(bookItem.getTitle()) : bookItem.getTitle() != null) return false;
-        return authors != null ? authors.equals(bookItem.getAuthors()) : bookItem.getAuthors() == null;
+        return authors != null ? authors.equals(bookItem.authors) : bookItem.authors == null;
     }
 
     @Override
