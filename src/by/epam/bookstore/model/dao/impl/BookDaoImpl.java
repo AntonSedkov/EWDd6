@@ -1,10 +1,10 @@
 package by.epam.bookstore.model.dao.impl;
 
+import by.epam.bookstore.exception.BookException;
 import by.epam.bookstore.model.dao.BookDao;
 import by.epam.bookstore.model.entity.BookItem;
-import by.epam.bookstore.model.exception.BookException;
 import by.epam.bookstore.model.store.BookStore;
-import by.epam.bookstore.model.validator.BookValidator;
+import by.epam.bookstore.validator.BookValidator;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -16,7 +16,7 @@ public class BookDaoImpl implements BookDao {
             throw new BookException("Book is null.");
         }
         if (BookValidator.isDuplicateBook(book) || !BookStore.getInstance().add(book)) {
-            throw new BookException("Book is not added.");
+            throw new BookException("Book is duplicated.");
         }
     }
 
@@ -84,15 +84,15 @@ public class BookDaoImpl implements BookDao {
 
     public List<BookItem> sortBooksByAuthors() {
         List<BookItem> sorted = receiveBooksToSort();
-        sorted.sort(Comparator.comparing(BookItem::getAuthors, (s1, s2) -> {
-            TreeSet<String> author1 = new TreeSet<>(s1);
-            TreeSet<String> author2 = new TreeSet<>(s2);
+        sorted.sort(Comparator.comparing(BookItem::getAuthors, (a1, a2) -> {
+            TreeSet<String> author1 = new TreeSet<>(a1);
+            TreeSet<String> author2 = new TreeSet<>(a2);
             String authorFirstBook = author1.pollFirst();
             String authorSecondBook = author2.pollFirst();
             while (authorFirstBook.compareTo(authorSecondBook) == 0 && author1.iterator().hasNext() && author2.iterator().hasNext()) {
                 authorFirstBook = author1.pollFirst();
                 authorSecondBook = author2.pollFirst();
-            }// TODO: 11.07.2020 Do it correctly?
+            }
             return authorFirstBook.compareTo(authorSecondBook);
         }));
         return sorted;
@@ -109,4 +109,5 @@ public class BookDaoImpl implements BookDao {
         List<BookItem> newList = new ArrayList<>(fromBookStore);
         return newList;
     }
+
 }

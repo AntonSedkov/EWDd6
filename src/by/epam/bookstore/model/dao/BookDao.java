@@ -1,7 +1,7 @@
 package by.epam.bookstore.model.dao;
 
+import by.epam.bookstore.exception.BookException;
 import by.epam.bookstore.model.entity.BookItem;
-import by.epam.bookstore.model.exception.BookException;
 
 import java.util.List;
 import java.util.Optional;

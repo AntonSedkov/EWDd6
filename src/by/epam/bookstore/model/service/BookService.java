@@ -1,22 +1,21 @@
 package by.epam.bookstore.model.service;
 
+import by.epam.bookstore.exception.BookException;
+import by.epam.bookstore.exception.BookServiceException;
 import by.epam.bookstore.model.dao.impl.BookDaoImpl;
 import by.epam.bookstore.model.entity.BookItem;
-import by.epam.bookstore.model.exception.BookException;
-import by.epam.bookstore.model.exception.BookServiceException;
 import by.epam.bookstore.model.store.BookStore;
 
 import java.util.List;
 
 public class BookService {
-
+    // TODO: 11.07.2020 How to transmit BookDao ? field or parameter?
     private BookDaoImpl dao;
     private static BookService instance;
 
     private BookService() {
         this.dao = new BookDaoImpl();
     }
-    // TODO: 11.07.2020 BookDaoImpl - singleton?
 
     public static BookService getInstance() {
         if (instance == null) {
@@ -24,7 +23,6 @@ public class BookService {
         }
         return instance;
     }
-    // TODO: 11.07.2020 How to transmit BookDao ? field or parameter?
 
     public boolean addBook(BookItem bookItem) throws BookServiceException {
         try {

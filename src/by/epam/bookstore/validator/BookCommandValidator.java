@@ -1,4 +1,4 @@
-package by.epam.bookstore.model.validator;
+package by.epam.bookstore.validator;
 
 import by.epam.bookstore.model.util.GeneratorId;
 

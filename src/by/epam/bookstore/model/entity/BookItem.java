@@ -1,6 +1,6 @@
 package by.epam.bookstore.model.entity;
 
-import by.epam.bookstore.model.exception.BookException;
+import by.epam.bookstore.exception.BookException;
 import by.epam.bookstore.model.util.GeneratorId;
 
 import java.time.LocalDate;
@@ -13,7 +13,6 @@ public class BookItem {
     private Set<String> authors;
     private int yearPublishing;
     private int pages;
-
 
     public BookItem(String title, int yearPublishing, int pages, String... authors) throws BookException {
         if (title == null || yearPublishing < 0 || yearPublishing > LocalDate.now().getYear()
@@ -92,10 +91,7 @@ public class BookItem {
         if (o == null || getClass() != o.getClass()) return false;
         BookItem bookItem = (BookItem) o;
         if (idBook != bookItem.idBook) return false;
-        if (yearPublishing != bookItem.yearPublishing) return false;
-        if (pages != bookItem.pages) return false;
-        if (title != null ? !title.equals(bookItem.title) : bookItem.title != null) return false;
-        return authors != null ? authors.equals(bookItem.authors) : bookItem.authors == null;
+        return equalsBooks(bookItem);
     }
 
     @Override

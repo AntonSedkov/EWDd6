@@ -1,4 +1,4 @@
-package by.epam.bookstore.model.exception;
+package by.epam.bookstore.exception;
 
 public class BookException extends Exception {
 

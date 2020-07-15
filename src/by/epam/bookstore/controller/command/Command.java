@@ -1,8 +1,7 @@
 package by.epam.bookstore.controller.command;
 
+import by.epam.bookstore.exception.BookCommandException;
 import by.epam.bookstore.model.entity.BookItem;
-import by.epam.bookstore.model.exception.BookException;
-import by.epam.bookstore.model.exception.BookServiceException;
 
 import java.util.List;
 import java.util.Map;
@@ -17,5 +16,6 @@ public interface Command {
     String PARAM_NAME_AUTHOR = "author";
     String PARAM_NAME_SORT_TYPE = "sort_type";
 
-    Map<String, List<BookItem>> execute(Map<String, String> requestParam) throws BookException, BookServiceException;
+    Map<String, List<BookItem>> execute(Map<String, String> requestParam) throws BookCommandException;
+
 }

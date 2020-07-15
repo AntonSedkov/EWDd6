@@ -1,6 +1,7 @@
-package by.epam.bookstore.model.exception;
+package by.epam.bookstore.exception;
 
 public class BookServiceException extends Exception {
+
     public BookServiceException() {
         super();
     }
@@ -16,4 +17,5 @@ public class BookServiceException extends Exception {
     public BookServiceException(Throwable cause) {
         super(cause);
     }
+
 }

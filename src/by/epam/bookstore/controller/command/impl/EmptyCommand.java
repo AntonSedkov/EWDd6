@@ -16,4 +16,5 @@ public class EmptyCommand implements Command {
         response.put("bookList", new ArrayList<>());
         return response;
     }
+
 }
