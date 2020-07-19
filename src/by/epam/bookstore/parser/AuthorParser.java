@@ -1,4 +1,4 @@
-package by.epam.bookstore.model.parser;
+package by.epam.bookstore.parser;
 
 public class AuthorParser {
 

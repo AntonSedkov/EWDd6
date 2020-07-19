@@ -8,7 +8,7 @@ public class BookCommandValidator {
     private static final String INTEGER_VALUE = "\\d+";
 
     public static boolean isYear(String yearStr) {
-        if (yearStr != null && !yearStr.isEmpty() && yearStr.trim().matches(INTEGER_VALUE)) {
+        if (yearStr != null && !yearStr.isEmpty() && yearStr.trim().matches(INTEGER_VALUE) && Long.parseLong(yearStr) <= Integer.MAX_VALUE) {
             int year = Integer.parseInt(yearStr);
             return year > 0 && year < LocalDate.now().getYear();
         }
@@ -16,7 +16,7 @@ public class BookCommandValidator {
     }
 
     public static boolean isPages(String pagesStr) {
-        if (pagesStr != null && !pagesStr.isEmpty() && pagesStr.trim().matches(INTEGER_VALUE)) {
+        if (pagesStr != null && !pagesStr.isEmpty() && pagesStr.trim().matches(INTEGER_VALUE) && Long.parseLong(pagesStr) <= Integer.MAX_VALUE) {
             int pages = Integer.parseInt(pagesStr);
             return pages > 0 && pages < Integer.MAX_VALUE;
         }
@@ -28,9 +28,9 @@ public class BookCommandValidator {
     }
 
     public static boolean isID(String idStr) {
-        if (idStr != null && !idStr.isEmpty() && idStr.trim().matches(INTEGER_VALUE)) {
+        if (idStr != null && !idStr.isEmpty() && idStr.trim().matches(INTEGER_VALUE) && Long.parseLong(idStr) <= Integer.MAX_VALUE) {
             int id = Integer.parseInt(idStr);
-            return id > 0 && id <= GeneratorId.getCurrentNumber();
+            return id >= 0 && id <= GeneratorId.getCurrentNumber();
         }
         return false;
     }

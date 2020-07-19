@@ -5,8 +5,8 @@ import by.epam.bookstore.exception.BookCommandException;
 import by.epam.bookstore.exception.BookException;
 import by.epam.bookstore.exception.BookServiceException;
 import by.epam.bookstore.model.entity.BookItem;
-import by.epam.bookstore.model.parser.AuthorParser;
 import by.epam.bookstore.model.service.BookService;
+import by.epam.bookstore.parser.AuthorParser;
 import by.epam.bookstore.validator.BookCommandValidator;
 
 import java.util.HashMap;
